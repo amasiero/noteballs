@@ -11,7 +11,10 @@
       <div class="navbar-brand">
         <span class="navbar-item is-size-4 is-family-secondary"> Noteballs </span>
 
-        <a role="button" class="navbar-burger" :class="{ 'is-active': showMobileNavBar }"
+        <a
+          role="button"
+          class="navbar-burger"
+          :class="{ 'is-active': showMobileNavBar }"
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarMenu"
