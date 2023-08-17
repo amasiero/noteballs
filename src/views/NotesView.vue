@@ -23,7 +23,7 @@
   const newContent = ref<string>('');
 
   const onSave = () => {
-    notes.value.push({
+    notes.value.unshift({
       id: uuidv4(),
       content: newContent.value,
     });
