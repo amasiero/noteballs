@@ -1,7 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import NoteCard from "@/components/NoteCard.vue";
+import NoteForm from "@/components/NoteForm.vue";
+</script>
 
 <template>
-  <div class="notes-view">
-    <h1>Notes</h1>
-  </div>
+    <NoteForm />
+    <NoteCard v-for="i in 3" :key="i"/>
 </template>
