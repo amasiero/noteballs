@@ -29,9 +29,13 @@
     });
     newContent.value = '';
   };
+
+  const onDelete = (id: string) => {
+    notes.value = notes.value.filter((note) => note.id !== id);
+  };
 </script>
 
 <template>
   <NoteForm v-model="newContent" @save="onSave" />
-  <NoteCard v-for="note in notes" :key="note.id" :note="note" />
+  <NoteCard v-for="note in notes" :key="note.id" :note="note" @delete="onDelete" />
 </template>
