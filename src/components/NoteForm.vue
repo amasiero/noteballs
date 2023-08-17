@@ -1,18 +1,18 @@
 <script setup lang="ts">
-interface NoteFormProps {
-  modelValue: string;
-}
+  interface NoteFormProps {
+    modelValue: string;
+  }
 
-withDefaults(defineProps<NoteFormProps>(), {
-  modelValue: '',
-});
+  withDefaults(defineProps<NoteFormProps>(), {
+    modelValue: '',
+  });
 
-const emit = defineEmits(['update:modelValue', 'save']);
+  const emit = defineEmits(['update:modelValue', 'save']);
 
-const onInput = (event: Event) => {
-  const target = event.target as HTMLTextAreaElement;
-  emit('update:modelValue', target.value);
-};
+  const onInput = (event: Event) => {
+    const target = event.target as HTMLTextAreaElement;
+    emit('update:modelValue', target.value);
+  };
 </script>
 
 <template>

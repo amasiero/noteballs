@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import {Note} from '@/types/note';
-import { computed } from 'vue';
+  import { Note } from '@/types/note';
+  import { computed } from 'vue';
 
   interface NoteCardProps {
     note: Note;
