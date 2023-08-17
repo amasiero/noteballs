@@ -17,6 +17,9 @@ jobs:
           # This is important to fetch the changes to the previous commit
           fetch-depth: 0
 
+      - run: npm ci
+      - run: npm install @trivago/prettier-plugin-sort-imports
+
       - name: Prettify code
         uses: creyD/prettier_action@v4.3
         with:
