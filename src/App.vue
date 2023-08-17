@@ -7,5 +7,7 @@
   <RouterView />
 </template>
 
-<style scoped>
+<style>
+
+@import 'bulma/css/bulma.min.css';
 </style>
