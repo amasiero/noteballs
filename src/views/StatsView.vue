@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { useNotesStore } from '@/stores';
+  import { useNotesStore } from '@/stores';
 
-
-const notesStore = useNotesStore();
+  const notesStore = useNotesStore();
 </script>
 
 <template>
