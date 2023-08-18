@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { Note } from '@/types/note';
   import { computed } from 'vue';
+import { RouterLink } from 'vue-router';
 
   interface NoteCardProps {
     note: Note;
@@ -23,7 +24,7 @@
       </div>
     </div>
     <footer class="card-footer">
-      <a href="#" class="card-footer-item">Edit</a>
+      <RouterLink :to="`/edit/${note.id}`" class="card-footer-item">Edit</RouterLink>
       <a href="#" class="card-footer-item" @click.prevent="$emit('delete', note.id)">Delete</a>
     </footer>
   </div>

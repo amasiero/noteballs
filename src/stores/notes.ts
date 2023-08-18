@@ -31,5 +31,8 @@ export const useNotesStore = defineStore('notes', {
     remove(id: string) {
       this.notes = this.notes.filter((note) => note.id !== id);
     },
+    update(note: Note) {
+      this.notes = this.notes.map((n) => (n.id === note.id ? note : n));
+    },
   },
 });

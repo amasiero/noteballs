@@ -24,9 +24,7 @@
     </div>
 
     <div class="field is-grouped is-grouped-right">
-      <div class="control">
-        <button class="button is-success" :disabled="!modelValue" @click.prevent="$emit('save')">Add new note</button>
-      </div>
+      <slot name="buttons" />
     </div>
   </div>
 </template>

@@ -24,6 +24,12 @@
 </script>
 
 <template>
-  <NoteForm v-model="newContent" @save="onSave" />
+  <NoteForm v-model="newContent" @save="onSave">
+    <template #buttons>
+      <div class="control">
+        <button class="button is-success" :disabled="!newContent" @click.prevent="onSave">Add new note</button>
+      </div>
+    </template>
+  </NoteForm>
   <NoteCard v-for="note in notesStore.notes" :key="note.id" :note="note" @delete="onDelete" />
 </template>
