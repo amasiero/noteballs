@@ -2,6 +2,7 @@
   import NoteCard from '@/components/NoteCard.vue';
   import NoteForm from '@/components/NoteForm.vue';
   import { useNotesStore } from '@/stores';
+  // @ts-ignore
   import { v4 as uuidv4 } from 'uuid';
   import { ref } from 'vue';
 
