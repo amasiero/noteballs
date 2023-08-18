@@ -2,8 +2,7 @@
   import NoteForm from '@/components/NoteForm.vue';
   import { useNotesStore } from '@/stores';
   import { ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-
+  import { useRoute, useRouter } from 'vue-router';
 
   const notesStore = useNotesStore();
   const route = useRoute();

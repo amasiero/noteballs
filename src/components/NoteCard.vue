@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { Note } from '@/types/note';
   import { computed } from 'vue';
-import { RouterLink } from 'vue-router';
+  import { RouterLink } from 'vue-router';
 
   interface NoteCardProps {
     note: Note;
