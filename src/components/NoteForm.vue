@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import {vAutofocus} from '@/directives/vAutofocus';
   interface NoteFormProps {
     modelValue: string;
   }
@@ -19,7 +20,7 @@
   <div class="card has-background-success-dark p-4 mb-5">
     <div class="field">
       <div class="control">
-        <textarea class="textarea" placeholder="Add a new note" :value="modelValue" @input="onInput"></textarea>
+        <textarea class="textarea" placeholder="Add a new note" :value="modelValue" @input="onInput" v-autofocus></textarea>
       </div>
     </div>
 
