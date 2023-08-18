@@ -1,9 +1,9 @@
 <script setup lang="ts">
   import NoteCard from '@/components/NoteCard.vue';
   import NoteForm from '@/components/NoteForm.vue';
+  import { useNotesStore } from '@/stores';
   import { v4 as uuidv4 } from 'uuid';
   import { ref } from 'vue';
-  import { useNotesStore } from '@/stores';
 
   const newContent = ref<string>('');
   const notesStore = useNotesStore();
