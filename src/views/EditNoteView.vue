@@ -9,7 +9,7 @@
   const router = useRouter();
 
   const noteId = route.params.id as string;
-  const note = notesStore.notes.find((note) => note.id === noteId);
+  const note = notesStore.findById(noteId);
 
   const newContent = ref<string>(note?.content || '');
 

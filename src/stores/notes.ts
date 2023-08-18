@@ -35,4 +35,9 @@ export const useNotesStore = defineStore('notes', {
       this.notes = this.notes.map((n) => (n.id === note.id ? note : n));
     },
   },
+  getters: {
+    findById: (state) => (id: string) => {
+      return state.notes.find((note) => note.id === id);
+    },
+  },
 });
