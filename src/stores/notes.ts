@@ -39,5 +39,11 @@ export const useNotesStore = defineStore('notes', {
     findById: (state) => (id: string) => {
       return state.notes.find((note) => note.id === id);
     },
+    totalNotes: (state) => {
+      return state.notes.length;
+    },
+    totalNumberOfCharacters: (state) => {
+      return state.notes.reduce((acc, note) => acc + note.content.length, 0);
+    },
   },
 });
