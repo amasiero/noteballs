@@ -37,9 +37,9 @@
       </div>
       <div id="navbarMenu" class="navbar-menu" :class="{ 'is-active': showMobileNavBar }" ref="navbarMenuRef">
         <div class="navbar-end">
-          <RouterLink to="/" class="navbar-item" active-class="is-active">Notes</RouterLink>
+          <RouterLink to="/" class="navbar-item" active-class="is-active" @click.prevent="showMobileNavBar = !showMobileNavBar">Notes</RouterLink>
           <hr class="navbar-divider" />
-          <RouterLink to="/stats" class="navbar-item" active-class="is-active">Stats</RouterLink>
+          <RouterLink to="/stats" class="navbar-item" active-class="is-active" @click.prevent="showMobileNavBar = !showMobileNavBar">Stats</RouterLink>
         </div>
       </div>
     </div>
