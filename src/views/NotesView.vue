@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import NotesList from '@/components/NotesList.vue';
   import NoteForm from '@/components/NoteForm.vue';
+  import NotesList from '@/components/NotesList.vue';
   import { useNotesStore } from '@/stores';
   import { useWatchCharacters } from '@/use/useWatchCharacters';
   // @ts-ignore
@@ -19,11 +19,7 @@ import NotesList from '@/components/NotesList.vue';
     newContent.value = '';
   };
 
-
-
   useWatchCharacters(newContent, 150);
-
-
 </script>
 
 <template>
