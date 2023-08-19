@@ -24,6 +24,8 @@
   };
 
   useWatchCharacters(newContent, 150);
+
+  await notesStore.fetch();
 </script>
 
 <template>
