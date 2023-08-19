@@ -23,7 +23,7 @@
     notesStore.remove(id);
   };
 
-  useWatchCharacters(newContent);
+  useWatchCharacters(newContent, 150);
 </script>
 
 <template>
