@@ -7,11 +7,11 @@
   <NavBar />
   <Suspense>
     <template #default>
-  <div class="container is-max-desktop px-2 py-4">
-    <RouterView />
-  </div>
-  </template>
-  <template #fallback>
+      <div class="container is-max-desktop px-2 py-4">
+        <RouterView />
+      </div>
+    </template>
+    <template #fallback>
       <progress class="progress is-success" value="60" max="100" />
     </template>
   </Suspense>
