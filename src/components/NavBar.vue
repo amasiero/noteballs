@@ -1,17 +1,21 @@
 <script setup lang="ts">
+  import { onClickOutside } from '@vueuse/core';
   import { ref } from 'vue';
   import { RouterLink } from 'vue-router';
-  import { onClickOutside } from '@vueuse/core';
 
   const showMobileNavBar = ref(false);
   const navbarMenuRef = ref<HTMLElement | null>(null);
   const navbarBurgerRef = ref<HTMLElement | null>(null);
 
-  onClickOutside(navbarMenuRef, () => {
-    showMobileNavBar.value = false;
-  }, {
-    ignore: [navbarBurgerRef]
-  });
+  onClickOutside(
+    navbarMenuRef,
+    () => {
+      showMobileNavBar.value = false;
+    },
+    {
+      ignore: [navbarBurgerRef],
+    },
+  );
 </script>
 
 <template>
@@ -37,9 +41,21 @@
       </div>
       <div id="navbarMenu" class="navbar-menu" :class="{ 'is-active': showMobileNavBar }" ref="navbarMenuRef">
         <div class="navbar-end">
-          <RouterLink to="/" class="navbar-item" active-class="is-active" @click.prevent="showMobileNavBar = !showMobileNavBar">Notes</RouterLink>
+          <RouterLink
+            to="/"
+            class="navbar-item"
+            active-class="is-active"
+            @click.prevent="showMobileNavBar = !showMobileNavBar"
+            >Notes</RouterLink
+          >
           <hr class="navbar-divider" />
-          <RouterLink to="/stats" class="navbar-item" active-class="is-active" @click.prevent="showMobileNavBar = !showMobileNavBar">Stats</RouterLink>
+          <RouterLink
+            to="/stats"
+            class="navbar-item"
+            active-class="is-active"
+            @click.prevent="showMobileNavBar = !showMobileNavBar"
+            >Stats</RouterLink
+          >
         </div>
       </div>
     </div>
