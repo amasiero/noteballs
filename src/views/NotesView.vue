@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import NoteCard from '@/components/NoteCard.vue';
+import NotesList from '@/components/NotesList.vue';
   import NoteForm from '@/components/NoteForm.vue';
   import { useNotesStore } from '@/stores';
   import { useWatchCharacters } from '@/use/useWatchCharacters';
@@ -19,13 +19,11 @@
     newContent.value = '';
   };
 
-  const onDelete = (id: string) => {
-    notesStore.remove(id);
-  };
+
 
   useWatchCharacters(newContent, 150);
 
-  await notesStore.fetch();
+
 </script>
 
 <template>
@@ -36,5 +34,14 @@
       </div>
     </template>
   </NoteForm>
-  <NoteCard v-for="note in notesStore.notes" :key="note.id" :note="note" @delete="onDelete" />
+  <Suspense>
+    <template #default>
+      <NotesList />
+    </template>
+    <template #fallback>
+      <div class="is-flex is-justify-content-center is-align-items-center">
+        <progress class="progress is-small is-primary" max="100" />
+      </div>
+    </template>
+  </Suspense>
 </template>
