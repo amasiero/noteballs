@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { onClickOutside } from '@vueuse/core';
-import { onMounted, onUnmounted, ref } from 'vue';
+  import { onMounted, onUnmounted, ref } from 'vue';
 
   interface ModalProps {
     modelValue: boolean;
@@ -34,7 +34,8 @@ import { onMounted, onUnmounted, ref } from 'vue';
     document.addEventListener('keyup', handleKeyUp);
   });
 
-  onUnmounted(() => { // Necessary to prevent memory leaks
+  onUnmounted(() => {
+    // Necessary to prevent memory leaks
     document.removeEventListener('keyup', handleKeyUp);
   });
 </script>
@@ -47,9 +48,7 @@ import { onMounted, onUnmounted, ref } from 'vue';
         <p class="modal-card-title">Delete note?</p>
         <button class="delete" aria-label="close" @click.prevent="onCloseModal"></button>
       </header>
-      <section class="modal-card-body">
-        Are you sure you want to delete this note?
-      </section>
+      <section class="modal-card-body">Are you sure you want to delete this note?</section>
       <footer class="modal-card-foot is-justify-content-flex-end">
         <button class="button is-danger" @click.prevent="onDelete">Delete</button>
         <button class="button" @click.prevent="onCloseModal">Cancel</button>

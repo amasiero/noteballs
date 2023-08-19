@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import { Note } from '@/types/note';
   import Modal from '@/components/Modal.vue';
+  import { Note } from '@/types/note';
   import { computed, reactive } from 'vue';
   import { RouterLink } from 'vue-router';
 
@@ -37,6 +37,6 @@
       <RouterLink :to="`/edit/${note.id}`" class="card-footer-item">Edit</RouterLink>
       <a href="#" class="card-footer-item" @click.prevent="modals.delete = true">Delete</a>
     </footer>
-    <Modal v-if="modals.delete" v-model="modals.delete" :action="onDelete"/>
+    <Modal v-if="modals.delete" v-model="modals.delete" :action="onDelete" />
   </div>
 </template>
