@@ -1,6 +1,6 @@
 import { db } from '@/infra/firebase';
 import { Note } from '@/types/note';
-import { collection, deleteDoc, doc, onSnapshot, setDoc, updateDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, onSnapshot, orderBy, query, setDoc, updateDoc } from 'firebase/firestore';
 import { defineStore } from 'pinia';
 
 interface NoteState {
@@ -8,6 +8,7 @@ interface NoteState {
 }
 
 const notesCollection = collection(db, 'notes');
+const queryNotesCollectionByCreatedAt = query(notesCollection, orderBy('createdAt'));
 
 export const useNotesStore = defineStore('notes', {
   state: (): NoteState => ({
@@ -15,7 +16,7 @@ export const useNotesStore = defineStore('notes', {
   }),
   actions: {
     async fetch() {
-      onSnapshot(notesCollection, (querySnapshot) => {
+      onSnapshot(queryNotesCollectionByCreatedAt, (querySnapshot) => {
         const notes: Note[] = [];
         querySnapshot.forEach((doc: any) => {
           notes.unshift({
@@ -30,6 +31,7 @@ export const useNotesStore = defineStore('notes', {
       const { id, content } = note;
       await setDoc(doc(notesCollection, id), {
         content,
+        createdAt: new Date(),
       });
     },
     async remove(id: string) {
