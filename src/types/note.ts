@@ -1,10 +1,7 @@
-interface Date {
-  seconds: number;
-  nanoseconds: number;
-}
+import { Timestamp } from 'firebase/firestore';
 
 export interface Note {
   id: string;
   content: string;
-  createdAt: Date;
+  createdAt: Timestamp;
 }

@@ -6,6 +6,7 @@
   // @ts-ignore
   import { v4 as uuidv4 } from 'uuid';
   import { ref } from 'vue';
+  import { Timestamp } from 'firebase/firestore';
 
   const newContent = ref<string>('');
   const notesStore = useNotesStore();
@@ -14,6 +15,7 @@
     const newNote = {
       id: uuidv4(),
       content: newContent.value,
+      createdAt: Timestamp.now(),
     };
     notesStore.create(newNote);
     newContent.value = '';
@@ -30,14 +32,5 @@
       </div>
     </template>
   </NoteForm>
-  <Suspense>
-    <template #default>
       <NotesList />
-    </template>
-    <template #fallback>
-      <div class="is-flex is-justify-content-center is-align-items-center">
-        <progress class="progress is-small is-primary" max="100" />
-      </div>
-    </template>
-  </Suspense>
 </template>

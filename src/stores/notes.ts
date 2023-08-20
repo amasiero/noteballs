@@ -5,6 +5,7 @@ import { defineStore } from 'pinia';
 
 interface NoteState {
   notes: Note[];
+  loading: boolean;
 }
 
 const notesCollection = collection(db, 'notes');
@@ -13,9 +14,11 @@ const queryNotesCollectionByCreatedAt = query(notesCollection, orderBy('createdA
 export const useNotesStore = defineStore('notes', {
   state: (): NoteState => ({
     notes: [],
+    loading: true,
   }),
   actions: {
     async fetch() {
+      this.loading = true;
       onSnapshot(queryNotesCollectionByCreatedAt, (querySnapshot) => {
         const notes: Note[] = [];
         querySnapshot.forEach((doc: any) => {
@@ -25,6 +28,7 @@ export const useNotesStore = defineStore('notes', {
           } as Note);
         });
         this.notes = notes;
+        this.loading = false;
       });
     },
     async create(note: Note) {
