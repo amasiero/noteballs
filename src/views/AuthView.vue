@@ -30,13 +30,13 @@
         <div class="field">
           <label class="label">Email</label>
           <div class="control">
-            <input v-model="credentials.email" class="input" type="email" placeholder="e.g. johnwick@gmail.com">
+            <input v-model="credentials.email" class="input" type="email" placeholder="e.g. johnwick@gmail.com" />
           </div>
         </div>
         <div class="field">
           <label class="label">Password</label>
           <div class="control">
-            <input v-model="credentials.password" class="input" type="password" placeholder="enter your password">
+            <input v-model="credentials.password" class="input" type="password" placeholder="enter your password" />
           </div>
         </div>
         <div class="field is-grouped is-grouped-right">
