@@ -1,19 +1,21 @@
 import { db } from '@/infra/firebase';
 import { Note } from '@/types/note';
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, doc, onSnapshot, setDoc } from 'firebase/firestore';
 import { defineStore } from 'pinia';
 
 interface NoteState {
   notes: Note[];
 }
 
+const notesCollection = collection(db, 'notes');
+
 export const useNotesStore = defineStore('notes', {
   state: (): NoteState => ({
     notes: [],
   }),
   actions: {
-    fetch() {
-      onSnapshot(collection(db, 'notes'), (querySnapshot) => {
+    async fetch() {
+      onSnapshot(notesCollection, (querySnapshot) => {
         const notes: Note[] = [];
         querySnapshot.forEach((doc: any) => {
           notes.unshift({
@@ -24,8 +26,11 @@ export const useNotesStore = defineStore('notes', {
         this.notes = notes;
       });
     },
-    create(note: Note) {
-      this.notes.unshift(note);
+    async create(note: Note) {
+      const { id, content } = note;
+      await setDoc(doc(notesCollection, id), {
+        content: content,
+      });
     },
     remove(id: string) {
       this.notes = this.notes.filter((note) => note.id !== id);
