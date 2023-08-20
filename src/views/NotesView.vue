@@ -3,10 +3,10 @@
   import NotesList from '@/components/NotesList.vue';
   import { useNotesStore } from '@/stores';
   import { useWatchCharacters } from '@/use/useWatchCharacters';
+  import { Timestamp } from 'firebase/firestore';
   // @ts-ignore
   import { v4 as uuidv4 } from 'uuid';
   import { ref } from 'vue';
-  import { Timestamp } from 'firebase/firestore';
 
   const newContent = ref<string>('');
   const notesStore = useNotesStore();
@@ -32,5 +32,5 @@
       </div>
     </template>
   </NoteForm>
-      <NotesList />
+  <NotesList />
 </template>
