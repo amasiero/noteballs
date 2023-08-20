@@ -15,18 +15,16 @@ export const useNotesStore = defineStore('notes', {
   }),
   actions: {
     async fetch() {
-      const notes: Note[] = [];
-
       onSnapshot(notesCollection, (querySnapshot) => {
+        const notes: Note[] = [];
         querySnapshot.forEach((doc: any) => {
           notes.unshift({
             id: doc.id,
             ...doc.data(),
           } as Note);
         });
+        this.notes = notes;
       });
-
-      this.notes = notes;
     },
     async create(note: Note) {
       const { id, content } = note;
