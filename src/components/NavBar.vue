@@ -40,6 +40,9 @@
         </a>
       </div>
       <div id="navbarMenu" class="navbar-menu" :class="{ 'is-active': showMobileNavBar }" ref="navbarMenuRef">
+        <div class="navbar-start">
+          <a class="navbar-item is-size-6 is-align-self-center has-text-info has-text-weight-medium" @click.prevent="showMobileNavBar = !showMobileNavBar">Log out</a>
+        </div>
         <div class="navbar-end">
           <RouterLink
             to="/"

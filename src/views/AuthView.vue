@@ -1,8 +1,17 @@
 <script setup lang="ts">
-  import { computed, ref } from 'vue';
+  import { computed, reactive, ref } from 'vue';
 
   const register = ref(false);
   const formTitle = computed(() => (register.value ? 'Register' : 'Sign in'));
+
+  const credentials = reactive({
+    email: '',
+    password: '',
+  });
+
+  const onSubmit = () => {
+    console.log(credentials);
+  };
 </script>
 
 <template>
@@ -17,7 +26,27 @@
       <div class="title has-text-centered">
         {{ formTitle }}
       </div>
-      <div class="content"></div>
+      <form class="content" @submit.prevent="onSubmit">
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input v-model="credentials.email" class="input" type="email" placeholder="e.g. johnwick@gmail.com">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input v-model="credentials.password" class="input" type="password" placeholder="enter your password">
+          </div>
+        </div>
+        <div class="field is-grouped is-grouped-right">
+          <p class="control">
+            <button class="button is-primary">
+              {{ formTitle }}
+            </button>
+          </p>
+        </div>
+      </form>
     </div>
   </div>
 </template>
