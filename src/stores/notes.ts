@@ -9,22 +9,29 @@ interface NoteState {
 
 const notesCollection = collection(db, 'notes');
 
+function delay() {
+  return new Promise((resolve) => {
+    setTimeout(resolve, 1500);
+  });
+}
+
 export const useNotesStore = defineStore('notes', {
   state: (): NoteState => ({
     notes: [],
   }),
   actions: {
     async fetch() {
+      const notes: Note[] = [];
       onSnapshot(notesCollection, (querySnapshot) => {
-        const notes: Note[] = [];
         querySnapshot.forEach((doc: any) => {
           notes.unshift({
             id: doc.id,
             ...doc.data(),
           } as Note);
         });
-        this.notes = notes;
       });
+      await delay();
+      this.notes = notes;
     },
     async create(note: Note) {
       const { id, content } = note;
