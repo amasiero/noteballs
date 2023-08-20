@@ -1,10 +1,9 @@
 <script setup lang="ts">
   import Modal from '@/components/Modal.vue';
   import { Note } from '@/types/note';
+  import { DateTime } from 'luxon';
   import { computed, reactive } from 'vue';
   import { RouterLink } from 'vue-router';
-  import { DateTime } from 'luxon';
-
 
   interface NoteCardProps {
     note: Note;
@@ -33,9 +32,11 @@
       <div class="content is-flex is-flex-direction-column">
         <p>{{ note.content }}</p>
         <div class="is-flex is-justify-content-space-between is-align-items-center mt-4">
-        <small class="has-text-grey-light">{{ DateTime.fromSeconds(note.createdAt.seconds).toFormat('dd/MM/yyyy HH:mm') }}</small>
-        <p class="tag is-normal">{{ charactersCount }}</p>
-      </div>
+          <small class="has-text-grey-light">{{
+            DateTime.fromSeconds(note.createdAt.seconds).toFormat('dd/MM/yyyy HH:mm')
+          }}</small>
+          <p class="tag is-normal">{{ charactersCount }}</p>
+        </div>
       </div>
     </div>
     <footer class="card-footer">
