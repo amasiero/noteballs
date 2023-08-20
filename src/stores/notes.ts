@@ -1,6 +1,6 @@
 import { db } from '@/infra/firebase';
 import { Note } from '@/types/note';
-import { collection, doc, onSnapshot, setDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, onSnapshot, setDoc } from 'firebase/firestore';
 import { defineStore } from 'pinia';
 
 interface NoteState {
@@ -32,8 +32,8 @@ export const useNotesStore = defineStore('notes', {
         content: content,
       });
     },
-    remove(id: string) {
-      this.notes = this.notes.filter((note) => note.id !== id);
+    async remove(id: string) {
+      await deleteDoc(doc(notesCollection, id));
     },
     update(note: Note) {
       this.notes = this.notes.map((n) => (n.id === note.id ? note : n));
