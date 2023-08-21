@@ -5,6 +5,7 @@ import {
   CollectionReference,
   DocumentData,
   Query,
+  Unsubscribe,
   collection,
   deleteDoc,
   doc,
@@ -23,6 +24,7 @@ interface NoteState {
 
 let notesCollection: CollectionReference<DocumentData, DocumentData>;
 let queryNotesCollectionByCreatedAt: Query;
+let notesSnapshotUnsubscribe: Unsubscribe | null = null;
 
 export const useNotesStore = defineStore('notes', {
   state: (): NoteState => ({
@@ -40,7 +42,11 @@ export const useNotesStore = defineStore('notes', {
     },
     async fetch() {
       this.loading = true;
-      onSnapshot(queryNotesCollectionByCreatedAt, (querySnapshot) => {
+      if (notesSnapshotUnsubscribe) {
+        notesSnapshotUnsubscribe();
+      }
+
+      notesSnapshotUnsubscribe = onSnapshot(queryNotesCollectionByCreatedAt, (querySnapshot) => {
         const notes: Note[] = [];
         querySnapshot.forEach((doc: any) => {
           notes.unshift({
