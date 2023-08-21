@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import { onClickOutside } from '@vueuse/core';
   import { useAuthStore } from '@/stores';
+  import { onClickOutside } from '@vueuse/core';
   import { ref } from 'vue';
   import { RouterLink } from 'vue-router';
 
@@ -46,7 +46,13 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div v-if="authStore.user" id="navbarMenu" class="navbar-menu" :class="{ 'is-active': showMobileNavBar }" ref="navbarMenuRef">
+      <div
+        v-if="authStore.user"
+        id="navbarMenu"
+        class="navbar-menu"
+        :class="{ 'is-active': showMobileNavBar }"
+        ref="navbarMenuRef"
+      >
         <div class="navbar-start">
           <a
             class="navbar-item is-size-6 is-align-self-center has-text-info has-text-weight-medium"
