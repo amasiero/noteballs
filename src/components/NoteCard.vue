@@ -33,7 +33,7 @@
         <p>{{ note.content }}</p>
         <div class="is-flex is-justify-content-space-between is-align-items-center mt-4">
           <small class="has-text-grey-light">{{
-            DateTime.fromSeconds(note.createdAt.seconds).toFormat('dd/MM/yyyy HH:mm')
+            DateTime.fromSeconds(note.createdAt.seconds).toFormat('dd-MM-yyyy @HH:mm')
           }}</small>
           <p class="tag is-normal">{{ charactersCount }}</p>
         </div>

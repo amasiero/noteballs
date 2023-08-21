@@ -1,14 +1,15 @@
 <script setup lang="ts">
   import NoteCard from '@/components/NoteCard.vue';
-  import { useNotesStore } from '@/stores';
+  import { useNotesStore, useAuthStore } from '@/stores';
 
   const notesStore = useNotesStore();
+  const authStore = useAuthStore();
 
   const onDelete = (id: string) => {
     notesStore.remove(id);
   };
 
-  notesStore.fetch();
+  notesStore.init(authStore.user?.uid || '');
 </script>
 
 <template>

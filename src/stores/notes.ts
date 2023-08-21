@@ -1,6 +1,19 @@
 import { db } from '@/infra/firebase';
+import { useAuthStore } from '@/stores/auth';
 import { Note } from '@/types/note';
-import { collection, deleteDoc, doc, onSnapshot, orderBy, query, setDoc, updateDoc } from 'firebase/firestore';
+import {
+  CollectionReference,
+  DocumentData,
+  Query,
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore';
 import { defineStore } from 'pinia';
 
 interface NoteState {
@@ -8,8 +21,8 @@ interface NoteState {
   loading: boolean;
 }
 
-const notesCollection = collection(db, 'notes');
-const queryNotesCollectionByCreatedAt = query(notesCollection, orderBy('createdAt'));
+let notesCollection: CollectionReference<DocumentData, DocumentData>;
+let queryNotesCollectionByCreatedAt: Query;
 
 export const useNotesStore = defineStore('notes', {
   state: (): NoteState => ({
@@ -17,6 +30,14 @@ export const useNotesStore = defineStore('notes', {
     loading: true,
   }),
   actions: {
+    init(uid: string) {
+      if (!uid) {
+        return;
+      }
+      notesCollection = collection(db, 'users', uid, 'notes');
+      queryNotesCollectionByCreatedAt = query(notesCollection, orderBy('createdAt'));
+      this.fetch();
+    },
     async fetch() {
       this.loading = true;
       onSnapshot(queryNotesCollectionByCreatedAt, (querySnapshot) => {
