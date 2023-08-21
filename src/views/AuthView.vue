@@ -1,16 +1,24 @@
 <script setup lang="ts">
   import { computed, reactive, ref } from 'vue';
+  import { useAuthStore } from '@/stores';
+  import { Credentials } from '@/types/auth';
 
   const register = ref(false);
   const formTitle = computed(() => (register.value ? 'Register' : 'Sign in'));
 
-  const credentials = reactive({
+  const credentials = reactive<Credentials>({
     email: '',
     password: '',
   });
 
+  const authStore = useAuthStore();
+
   const onSubmit = () => {
-    console.log(credentials);
+    if (register.value) {
+      authStore.register(credentials);
+    } else {
+      // login user
+    }
   };
 </script>
 
