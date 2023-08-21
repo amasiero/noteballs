@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import NoteCard from '@/components/NoteCard.vue';
-  import { useNotesStore, useAuthStore } from '@/stores';
+  import { useAuthStore, useNotesStore } from '@/stores';
 
   const notesStore = useNotesStore();
   const authStore = useAuthStore();
