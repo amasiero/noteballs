@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import { computed, reactive, ref } from 'vue';
   import { useAuthStore } from '@/stores';
   import { Credentials } from '@/types/auth';
+  import { computed, reactive, ref } from 'vue';
 
   const register = ref(false);
   const formTitle = computed(() => (register.value ? 'Register' : 'Sign in'));
