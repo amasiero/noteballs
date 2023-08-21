@@ -1,5 +1,4 @@
 import { db } from '@/infra/firebase';
-import { useAuthStore } from '@/stores/auth';
 import { Note } from '@/types/note';
 import {
   CollectionReference,
