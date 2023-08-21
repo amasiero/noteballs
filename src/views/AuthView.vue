@@ -4,6 +4,7 @@
   import { computed, reactive, ref } from 'vue';
 
   const register = ref(false);
+  const form = ref<HTMLFormElement | null>(null);
   const formTitle = computed(() => (register.value ? 'Register' : 'Sign in'));
 
   const credentials = reactive<Credentials>({
@@ -14,11 +15,16 @@
   const authStore = useAuthStore();
 
   const onSubmit = () => {
+    if (!credentials.email || !credentials.password) {
+      return;
+    }
+
     if (register.value) {
       authStore.register(credentials);
     } else {
-      // login user
+      authStore.login(credentials);
     }
+    form.value?.reset();
   };
 </script>
 
@@ -34,7 +40,7 @@
       <div class="title has-text-centered">
         {{ formTitle }}
       </div>
-      <form class="content" @submit.prevent="onSubmit">
+      <form class="content" @submit.prevent="onSubmit" ref="form">
         <div class="field">
           <label class="label">Email</label>
           <div class="control">

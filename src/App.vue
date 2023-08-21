@@ -1,6 +1,14 @@
 <script setup lang="ts">
   import NavBar from '@/components/NavBar.vue';
   import { RouterView } from 'vue-router';
+  import { useAuthStore } from '@/stores';
+  import { onMounted } from 'vue';
+
+  const authStore = useAuthStore();
+
+  onMounted(() => {
+    authStore.init();
+  });
 </script>
 
 <template>

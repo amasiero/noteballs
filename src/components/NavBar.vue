@@ -1,8 +1,10 @@
 <script setup lang="ts">
   import { onClickOutside } from '@vueuse/core';
+  import { useAuthStore } from '@/stores';
   import { ref } from 'vue';
   import { RouterLink } from 'vue-router';
 
+  const authStore = useAuthStore();
   const showMobileNavBar = ref(false);
   const navbarMenuRef = ref<HTMLElement | null>(null);
   const navbarBurgerRef = ref<HTMLElement | null>(null);
@@ -16,6 +18,11 @@
       ignore: [navbarBurgerRef],
     },
   );
+
+  const onLogout = () => {
+    authStore.logout();
+    showMobileNavBar.value = !showMobileNavBar.value;
+  };
 </script>
 
 <template>
@@ -39,11 +46,11 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div id="navbarMenu" class="navbar-menu" :class="{ 'is-active': showMobileNavBar }" ref="navbarMenuRef">
+      <div v-if="authStore.user" id="navbarMenu" class="navbar-menu" :class="{ 'is-active': showMobileNavBar }" ref="navbarMenuRef">
         <div class="navbar-start">
           <a
             class="navbar-item is-size-6 is-align-self-center has-text-info has-text-weight-medium"
-            @click.prevent="showMobileNavBar = !showMobileNavBar"
+            @click.prevent="onLogout"
             >Log out</a
           >
         </div>
