@@ -2,12 +2,14 @@ import { auth } from '@/infra/firebase';
 import { Credentials } from '@/types/auth';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { defineStore } from 'pinia';
+import { Router } from 'vue-router';
 
 interface AuthState {
   user: null | {
     uid: string;
     email: string;
   };
+  router?: Router;
 }
 
 export const useAuthStore = defineStore('auth', {
@@ -22,8 +24,10 @@ export const useAuthStore = defineStore('auth', {
             uid: user.uid,
             email: user.email || '',
           };
+          this.router?.push({ name: 'notes' });
         } else {
           this.user = null;
+          this.router?.replace({ name: 'auth' });
         }
       });
     },
